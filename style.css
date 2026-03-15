@@ -237,3 +237,9 @@ body {
     .nav-btn { width: 200px; height: 200px; padding: 0; }
     .main-container { padding: 1.5rem; width: 95%; }
 }
+
+/* Dispositivos muy pequeños */
+@media (max-width: 400px) {
+    .nav-btn { width: 160px; height: 160px; font-size: 0.9rem; }
+    .logo-container { margin-bottom: 3rem; }
+}

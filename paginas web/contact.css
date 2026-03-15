@@ -454,3 +454,30 @@
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    .contact-box {
+        padding: 2rem 1.5rem;
+    }
+
+    .options-grid {
+        grid-template-columns: 1fr; /* Forzar una columna en móviles para mejor lectura */
+    }
+
+    .quote-summary .total-price strong {
+        font-size: 1.5rem;
+    }
+
+    .submission-options {
+        flex-direction: column;
+    }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+    .contact-box { padding: 1.5rem 1rem; }
+    .quote-summary .total-price strong { font-size: 1.4rem; }
+    .submission-options { gap: 0.8rem; width: 100%; }
+    .btn-whatsapp, .btn-email { width: 100%; font-size: 0.95rem; }
+}

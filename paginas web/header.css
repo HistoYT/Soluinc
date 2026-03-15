@@ -186,3 +186,32 @@
         box-shadow: 0 4px 15px rgba(77, 184, 255, 0.4);
     }
 }
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    .nav-menu {
+        gap: 1rem;
+    }
+
+    /* Ocultar enlaces de texto en móvil, mantener el botón CTA */
+    .nav-menu a:not(.btn-cta) {
+        display: none;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+    .nav-container { padding: 0.8rem 3%; }
+    .logo img { height: 35px; } /* Logo más pequeño */
+    .btn-cta { padding: 0.5rem 1rem; font-size: 0.9rem; }
+    .hero-content h1 { font-size: 2rem; }
+    .hero-content p { font-size: 1rem; }
+}

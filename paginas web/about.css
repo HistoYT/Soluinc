@@ -43,3 +43,18 @@
     color: var(--primary-blue);
     border-radius: 12px;
 }
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+    .visual-box { height: 150px; }
+    .about-text h3 { font-size: 1.5rem; }
+}

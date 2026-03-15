@@ -58,7 +58,7 @@
 
 .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2.5rem;
     position: relative;
     z-index: 1;
@@ -192,4 +192,12 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+    .portfolio-grid {
+        grid-template-columns: 1fr; /* Una sola columna obligatoria */
+        gap: 1.5rem;
+    }
 }

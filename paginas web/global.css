@@ -45,3 +45,21 @@ body {
     margin-bottom: 3rem;
     font-size: 1.1rem;
 }
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    .section {
+        padding: 60px 0;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+    .container { width: 95%; } /* Maximizar ancho */
+    .section { padding: 40px 0; }
+    .section-title { font-size: 1.7rem; }
+}
