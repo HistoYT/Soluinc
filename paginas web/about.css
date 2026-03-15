@@ -1,0 +1,45 @@
+.about-section {
+    background-color: var(--white);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.about-text h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--dark-text);
+}
+
+.features-list {
+    list-style: none;
+    margin-top: 1.5rem;
+}
+
+.features-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+    color: var(--gray);
+}
+
+.about-visual {
+    display: flex;
+    gap: 1rem;
+}
+
+.visual-box {
+    flex: 1;
+    height: 200px;
+    background: var(--light-bg);
+    border: 2px solid var(--primary-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: var(--primary-blue);
+    border-radius: 12px;
+}

@@ -1,0 +1,195 @@
+.portfolio-section {
+    /* Fondo oscuro para resaltar el efecto futurista/neón */
+    background: linear-gradient(135deg, #050a10 0%, #001f33 100%);
+    color: var(--white);
+    overflow: hidden; /* Para contener efectos de resplandor */
+    position: relative;
+}
+
+/* Fondo dinámico que cambia con JS */
+.portfolio-dynamic-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out, transform 8s linear; /* Transición más lenta y sutil */
+    z-index: 0;
+    /* Filtro Soluinc: Mezcla la imagen con el azul corporativo */
+    filter: grayscale(100%) sepia(100%) hue-rotate(170deg) saturate(2) brightness(0.5); /* Filtro menos intenso */
+    transform: scale(1);
+}
+
+.portfolio-dynamic-bg.active {
+    opacity: 0.3; /* Opacidad reducida para un efecto más sutil */
+    transform: scale(1.08); /* Zoom suave un poco más pronunciado para compensar la opacidad */
+}
+
+/* Asegurar que el contenido esté encima del fondo dinámico */
+.portfolio-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Decoración de fondo sutil */
+.portfolio-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(77, 184, 255, 0.05) 0%, transparent 60%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.portfolio-section .section-title {
+    color: var(--white);
+    text-shadow: 0 0 10px rgba(77, 184, 255, 0.5);
+}
+
+.portfolio-section .section-subtitle {
+    color: #a0c4ff;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.project-card {
+    position: relative;
+    display: block; /* Para que el enlace cubra todo */
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(10px);
+    height: 400px; /* Altura fija para uniformidad */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+/* Efecto de Escáner Soluinc */
+.project-card::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to bottom, transparent, rgba(77, 184, 255, 0.4), transparent);
+    z-index: 3;
+    transition: none;
+    pointer-events: none;
+}
+
+.project-card:hover::after {
+    top: 100%;
+    transition: top 1s ease-in-out;
+}
+
+.project-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: var(--secondary-blue);
+    box-shadow: 0 15px 30px rgba(0, 95, 153, 0.3), 
+                0 0 15px rgba(77, 184, 255, 0.4); /* Resplandor neón */
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.8s ease;
+    filter: brightness(0.8) grayscale(20%);
+}
+
+.project-card:hover .card-image {
+    transform: scale(1.15);
+    filter: brightness(1) grayscale(0%);
+}
+
+/* Overlay con información que desliza hacia arriba */
+.card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95), rgba(0, 20, 40, 0.8), transparent);
+    padding: 2rem 1.5rem 1.5rem;
+    transform: translateY(0); /* Ahora visible por defecto para que no se corte el título */
+    transition: transform 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+}
+
+.project-card:hover .card-overlay {
+    /* El transform ya no es necesario aquí */
+}
+
+.card-overlay h3 {
+    color: var(--white);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.card-description {
+    background: rgba(0, 10, 20, 0.5);
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 3px solid var(--secondary-blue);
+    margin-bottom: 0; /* Sin margen inferior inicial para que pegue con las tags ocultas */
+    backdrop-filter: blur(4px);
+}
+
+.card-overlay p {
+    color: #d1e8ff;
+    font-size: 0.95rem;
+    opacity: 0.8;
+    /* Reset styles, now handled by parent */
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.tech-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    max-height: 0; /* Colapsado inicialmente */
+    margin-top: 0;
+    transform: translateY(10px);
+    transition: all 0.4s ease 0.1s; /* Retraso para efecto cascada */
+}
+
+.project-card:hover .tech-tags {
+    opacity: 1;
+    max-height: 100px; /* Se expande al hacer hover */
+    margin-top: 1rem;
+    transform: translateY(0);
+}
+
+.tech-tag {
+    background: rgba(77, 184, 255, 0.15);
+    color: var(--secondary-blue);
+    padding: 0.3rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    border: 1px solid rgba(77, 184, 255, 0.3);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}

@@ -1,0 +1,23 @@
+.main-footer {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.footer-content p {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.footer-links a {
+    color: var(--white);
+    text-decoration: underline;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.footer-links a:hover {
+    opacity: 1;
+}

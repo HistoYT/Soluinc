@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diseño Web - Soluinc</title>
+    <!-- Fuente Moderna -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Estilos Modulares -->
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="about.css">
+    <link rel="stylesheet" href="portfolio.css">
+    <link rel="stylesheet" href="contact.css">
+    <link rel="stylesheet" href="footer.css">
+</head>
+<body>
+    
+    <!-- HEADER & HERO -->
+    <header class="header">
+        <div class="nav-container" id="main-nav">
+            <div class="logo">
+                <a href="../index.html">
+                    <!-- Enlace relativo a la imagen en la carpeta superior -->
+                    <img src="../logo negro.png" alt="Soluinc Logo">
+                </a>
+            </div>
+            <nav class="nav-menu">
+                <a href="#about">Quiénes Somos</a>
+                <a href="#portfolio">Portafolio</a>
+                <a href="#contact" class="btn-cta">Cotizar</a>
+            </nav>
+        </div>
+        
+        <div class="hero-slider">
+            <!-- Slides con imágenes de programación y tecnología -->
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1920&q=80');"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1920&q=80');"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1920&q=80');"></div>
+
+            <div class="hero-content">
+                <h1>Tu Negocio Merece una Web de Alto Impacto</h1>
+                <p>Desarrollamos sitios web modernos, rápidos y optimizados que convierten visitantes en clientes.</p>
+                <a href="#contact" class="btn-hero">Inicia tu Proyecto</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- QUIENES SOMOS -->
+    <section id="about" class="section about-section">
+        <div class="container">
+            <h2 class="section-title">Quiénes Somos</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <h3>Expertos en Transformación Digital</h3>
+                    <p>En Soluinc, fusionamos diseño creativo con tecnología de punta. No solo hacemos páginas web; construimos herramientas de venta y posicionamiento de marca.</p>
+                    <ul class="features-list">
+                        <li>Diseño UX/UI Centrado en el Usuario</li>
+                        <li>Desarrollo Optimizado (SEO)</li>
+                        <li>Soporte y Mantenimiento Continuo</li>
+                    </ul>
+                </div>
+                <div class="about-visual">
+                    <div class="visual-box">Innovación</div>
+                    <div class="visual-box">Calidad</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTAFOLIO -->
+    <section id="portfolio" class="section portfolio-section">
+        <!-- Capa de fondo dinámico -->
+        <div class="portfolio-dynamic-bg"></div>
+        <div class="container">
+            <h2 class="section-title">Nuestro Trabajo</h2>
+            <p class="section-subtitle">Proyectos recientes que impulsan negocios</p>
+            <div class="portfolio-grid">
+                
+                <!-- Card 1 -->
+                <a href="https://konverge.com.co/" class="project-card" data-bg="image.png">
+                    <div class="card-image" style="background-image: url('image.png');"></div>
+                    <div class="card-overlay">
+                        <div class="card-description">
+                            <h3>Konverge</h3>
+                        </div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Stripe</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 2 -->
+                <a href="https://easy-clean.vercel.app/" class="project-card" data-bg="image2.png">
+                    <div class="card-image" style="background-image: url('image2.png');"></div>
+                    <div class="card-overlay">
+                        <div class="card-description">
+                            <h3>Easy Clean</h3>
+                        </div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">D3.js</span>
+                            <span class="tech-tag">Firebase</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 3 -->
+                <a href="https://universal-q.vercel.app/" class="project-card" data-bg="image3.png">
+                    <div class="card-image" style="background-image: url('image3.png');"></div>
+                    <div class="card-overlay">
+                        <div class="card-description">
+                            <h3>UniversalQ</h3>
+                        </div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Three.js</span>
+                            <span class="tech-tag">WebGL</span>
+                            <span class="tech-tag">GSAP</span>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- COTIZACION -->
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <div class="contact-box">
+                <h2 class="section-title">Calcula tu Cotización</h2>
+                <p>Selecciona las opciones que mejor se adapten a tu proyecto y obtén una estimación en tiempo real.</p>
+                
+                <form class="quote-form" id="quoteForm">
+                    <!-- Tipo de Página Web -->
+                    <div class="input-group">
+                        <label class="group-label">Planes:</label>
+                        <div class="options-grid">
+                            <label class="option-card">
+                                <input type="radio" name="website_type" value="solumin" data-price="700000" checked>
+                                <div class="indicator"></div>
+                                <div class="opt-content">
+                                    <span class="opt-title">Plan SoluMin</span>
+                                    <ul class="opt-features">
+                                        <li>Página informativa</li>
+                                        <li>Posicionamiento SEO</li>
+                                        <li>1 mes de mantenimiento gratis</li>
+                                        <li>Web Responsive</li>
+                                    </ul>
+                                    <span class="opt-price">COP 700.000</span>
+                                </div>
+                            </label>
+                            
+                            <label class="option-card">
+                                <input type="radio" name="website_type" value="solumedium" data-price="1500000">
+                                <div class="indicator"></div>
+                                <div class="opt-content">
+                                    <span class="opt-title">Plan SoluMedium</span>
+                                    <ul class="opt-features">
+                                        <li>Página informativa</li>
+                                        <li>2 páginas adicionales gratis</li>
+                                        <li>SEO y Mantenimiento mensual</li>
+                                        <li>Web Responsive</li>
+                                    </ul>
+                                    <span class="opt-price">COP 1.500.000</span>
+                                </div>
+                            </label>
+                            
+                            <label class="option-card">
+                                <input type="radio" name="website_type" value="solumax" data-price="2600000">
+                                <div class="indicator"></div>
+                                <div class="opt-content">
+                                    <span class="opt-title">Plan SoluMax</span>
+                                    <ul class="opt-features">
+                                        <li>Página informativa</li>
+                                        <li>4 páginas adicionales gratis</li>
+                                        <li>Integración de videos</li>
+                                        <li>SEO y Mantenimiento mensual</li>
+                                        <li>Web Responsive</li>
+                                    </ul>
+                                    <span class="opt-price">COP 2.600.000</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Arma tu Página -->
+                    <div class="input-group">
+                        <label class="group-label">Arma tu Página:</label>
+                        <div class="options-grid">
+                            <label class="option-card">
+                                <input type="checkbox" name="features" value="landing" data-price="700000">
+                                <div class="indicator"></div>
+                                <div class="opt-content">
+                                    <span class="opt-title">Landing Page</span>
+                                    <span class="opt-price">+ COP 700.000</span>
+                                </div>
+                            </label>
+                            
+                            <label class="option-card">
+                                <input type="checkbox" name="features" value="seo" data-price="400000">
+                                <div class="indicator"></div>
+                                <div class="opt-content">
+                                    <span class="opt-title">Posicionamiento SEO</span>
+                                    <span class="opt-price">+ COP 400.000</span>
+                                </div>
+                            </label>
+                            
+                            <label class="option-card">
+                                <input type="checkbox" name="features" value="multilenguaje" data-price="800000">
+                                <div class="indicator"></div>
+                                <div class="opt-content">
+                                    <span class="opt-title">Multilenguaje</span>
+                                    <span class="opt-price">+ COP 800.000</span>
+                                </div>
+                            </label>
+                            
+                            <label class="option-card">
+                                <input type="checkbox" name="features" value="responsive" data-price="300000">
+                                <div class="indicator"></div>
+                                <div class="opt-content">
+                                    <span class="opt-title">Sistema Web Responsive</span>
+                                    <span class="opt-price">+ COP 300.000</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Tienda Virtual -->
+                    <div class="input-group">
+                        <label class="group-label">Tienda Virtual:</label>
+                        <div class="options-grid">
+                            <label class="option-card">
+                                <input type="checkbox" name="features" value="payment_gateway" data-price="800000">
+                                <div class="indicator"></div>
+                                <div class="opt-content">
+                                    <span class="opt-title">Pasarela de Pagos</span>
+                                    <span class="opt-price">+ COP 800.000</span>
+                                </div>
+                            </label>
+                            
+                            <label class="option-card">
+                                <input type="checkbox" name="features" value="shopping_cart" data-price="600000">
+                                <div class="indicator"></div>
+                                <div class="opt-content">
+                                    <span class="opt-title">Carrito de Compras</span>
+                                    <span class="opt-price">+ COP 600.000</span>
+                                </div>
+                            </label>
+                            
+                            <label class="option-card">
+                                <input type="checkbox" name="features" value="product_catalog" data-price="500000">
+                                <div class="indicator"></div>
+                                <div class="opt-content">
+                                    <span class="opt-title">Catálogo de Productos</span>
+                                    <span class="opt-price">+ COP 500.000</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Páginas Adicionales -->
+                    <div class="input-group">
+                        <label class="group-label" for="additional_pages">Páginas Adicionales (c/u):</label>
+                        <input type="number" id="additional_pages" name="additional_pages" min="0" value="0" data-price="400000" class="page-counter-input">
+                    </div>
+
+                    <!-- Mantenimiento y Soporte -->
+                    <div class="input-group">
+                        <label class="group-label" for="maintenance_plan">Mantenimiento y Soporte (Mensual):</label>
+                        <select id="maintenance_plan" name="maintenance">
+                            <option value="0" data-price="0">Ninguno (COP 0)</option>
+                            <option value="basico" data-price="100000">Básico (COP 100.000/mes)</option>
+                            <option value="premium" data-price="250000">Premium (COP 250.000/mes)</option>
+                        </select>
+                    </div>
+
+                    <!-- Display de la cotización -->
+                    <div class="quote-summary">
+                        <h3>Resumen de Cotización:</h3>
+                        <p>Tipo de Web: <span id="basePriceDisplay">COP 0</span></p>
+                        <p>Funcionalidades: <span id="featuresPriceDisplay">COP 0</span></p>
+                        <p>Páginas Adicionales: <span id="additionalPagesPriceDisplay">COP 0</span></p>
+                        <p>Mantenimiento Mensual: <span id="maintenancePriceDisplay">COP 0</span></p>
+                        <div class="total-price">
+                            <strong>Total Estimado: <span id="totalPriceDisplay">COP 0</span></strong>
+                        </div>
+                    </div>
+
+                    <!-- Opciones de Envío -->
+                    <div class="submission-options">
+                        <a href="#" id="whatsappBtn" class="btn-submit btn-whatsapp" target="_blank">Enviar por WhatsApp</a>
+                        <button type="button" id="emailBtn" class="btn-submit btn-email"><span>Enviar por Correo</span></button>
+                    </div>
+
+                    <!-- Campos Ocultos para Correo -->
+                    <div class="email-form-fields" id="emailFormFields">
+                        <p class="form-intro-text">Completa tus datos para finalizar la solicitud:</p>
+                        <div class="input-group">
+                            <input type="text" name="nombre" placeholder="Nombre Completo" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="email" name="correo" placeholder="Correo Electrónico" required>
+                        </div>
+                        <div class="input-group">
+                            <textarea name="mensaje" rows="4" placeholder="¿Algún detalle adicional?"></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Confirmar Envío</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Soluinc. Todos los derechos reservados.</p>
+            <div class="footer-links">
+                <a href="../index.html">Volver al Home</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animación del Header al hacer scroll
+        const nav = document.getElementById('main-nav');
+        window.addEventListener('scroll', () => {
+            // Añade la clase 'scrolled' cuando el scroll es mayor a 50px
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Lógica para el fondo dinámico del Portafolio (Toque Soluinc)
+        const portfolioSection = document.querySelector('.portfolio-section');
+        const dynamicBg = document.querySelector('.portfolio-dynamic-bg');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        projectCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                const bgImage = this.getAttribute('data-bg');
+                
+                // Cambiar imagen y activar estado visible
+                dynamicBg.style.backgroundImage = `url('${bgImage}')`;
+                dynamicBg.classList.add('active');
+                portfolioSection.classList.add('card-hovered');
+            });
+
+            card.addEventListener('mouseleave', function() {
+                // Volver al estado original
+                dynamicBg.classList.remove('active');
+                portfolioSection.classList.remove('card-hovered');
+            });
+        });
+
+        // Animación de scroll suave para todos los anclajes
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                // Solo actuar si es un anclaje interno válido (ej: #contact) y no solo #
+                if (targetId.startsWith('#') && targetId.length > 1) {
+                    const targetElement = document.querySelector(targetId);
+                    // Si el elemento de destino existe en la página, realizar el scroll suave
+                    if (targetElement) {
+                        e.preventDefault();
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Enlazar el script de cotización
+    </script>
+    <script src="quote.js"></script>
+
+</body>
+</html>
