@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Actualizar el enlace del botón de WhatsApp
         if (whatsappBtn) {
-            const whatsappNumber = '573054497967';
+            const whatsappNumber = '573167578219';
             const encodedMessage = encodeURIComponent(message);
             whatsappBtn.href = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
         }
