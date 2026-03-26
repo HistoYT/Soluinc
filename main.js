@@ -3,162 +3,43 @@ document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelectorAll('.nav-btn');
     
     // Configuración de la intensidad del movimiento
-    const bgFactor = 100; // Factor para el fondo (parallax)
+    const bgFactor = 300; // Aumentado para que el movimiento sea mucho más suave
     const originalBgColor = getComputedStyle(document.documentElement).getPropertyValue('--bg-color');
     
     // Colores distintos para cada botón
     const buttonColors = [
-        '#001f33', // Azul oscuro profundo (Web)
-        '#00334d', // Cian oscuro (Comercio)
-        '#0a1429'  // Azul grisáceo oscuro (Contabilidad)
+        '#001a33', // Azul profundo brillante (Web)
+        '#00334d', // Azul cian oscuro (Comercio)
+        '#002244'  // Azul marino intenso (Contabilidad)
     ];
 
-    // --- SISTEMA DE ESPACIO 3D (COMPLEJO) ---
-    const spaceObjects = [];
-    const starCount = 1000; // Más estrellas para mayor impacto
-    const planetCount = 2; 
-    const galaxyCount = 10; // Nuevas galaxias
-    const nebulaCount = 5; // Cantidad de nebulosas
-    
-    let speed = 2; // Velocidad base aumentada para que se note el movimiento
-    let targetSpeed = 2; // Para interpolación de velocidad
-    let isNavigating = false; // Bandera para controlar el estado de navegación
+    // --- SISTEMA CORPORATIVO ABSTRACTO ---
+    // Generación de formas geométricas flotantes
+    const shapeCount = 15; // Número de elementos flotantes
+    const minSize = 40;
+    const maxSize = 120;
 
-    class SpaceObject {
-        constructor(type) {
-            this.type = type;
-            this.element = document.createElement('div');
-            this.element.classList.add(type);
-            this.reset(true); // true = posición inicial aleatoria en todo el volumen
-            
-            if (type === 'galaxy') {
-                const arms = document.createElement('div');
-                arms.classList.add('galaxy-arms');
-                this.element.appendChild(arms);
-            }
-            
-            bgAnimation.appendChild(this.element);
-        }
-
-        reset(initial = false) {
-            // Posición aleatoria en X e Y (ampliada para cubrir pantalla)
-            this.x = (Math.random() - 0.5) * window.innerWidth * 3;
-            this.y = (Math.random() - 0.5) * window.innerHeight * 3;
-            
-            // Profundidad Z
-            this.z = initial ? Math.random() * 2000 : 2000;
-
-            if (this.type === 'star') {
-                const size = Math.random() * 2 + 1;
-                this.element.style.width = `${size}px`;
-                this.element.style.height = `${size}px`;
-                this.element.style.opacity = Math.random();
-            } else if (this.type === 'galaxy') {
-                const size = Math.random() * 300 + 200; // Galaxias grandes
-                this.element.style.width = `${size}px`;
-                this.element.style.height = `${size}px`;
-                // Inclinación 3D aleatoria para la galaxia
-                this.rotateX = Math.random() * 60 + 40;
-                this.rotateY = Math.random() * 40 - 20;
-                this.element.style.zIndex = -1;
-            } else if (this.type === 'planet') {
-                const size = Math.random() * 100 + 50; // Planetas entre 50px y 150px
-                this.element.style.width = `${size}px`;
-                this.element.style.height = `${size}px`;
-                // Generar color de planeta aleatorio (Gradientes complejos)
-                const hue = Math.random() * 360;
-                const color1 = `hsl(${hue}, 70%, 50%)`;
-                const color2 = `hsl(${hue + 40}, 80%, 20%)`;
-                this.element.style.background = `radial-gradient(circle at 30% 30%, ${color1}, ${color2})`;
-                this.element.style.zIndex = Math.floor(Math.random() * 5); // Algunas pasan por delante, otras por detrás
-            } else if (this.type === 'nebula') {
-                const size = Math.random() * 400 + 300;
-                this.element.style.width = `${size}px`;
-                this.element.style.height = `${size}px`;
-                const hue = Math.random() * 360;
-                this.element.style.background = `radial-gradient(circle, hsla(${hue}, 60%, 50%, 0.4), transparent 70%)`;
-            }
-        }
-
-        update() {
-            // Mover hacia la cámara (disminuir Z)
-            this.z -= speed;
-            
-            // Efecto Warp: Estirar estrellas cuando vamos rápido
-            if (this.type === 'star' && speed > 5) {
-                this.element.style.height = `${Math.min(300, speed * 5)}px`; // Estelas mucho más largas y visibles
-            } else if (this.type === 'star') {
-                this.element.style.height = this.element.style.width;
-            }
-
-            // Si pasa la cámara (z < 0), reiniciar al fondo
-            if (this.z < 10) {
-                this.reset();
-            }
-
-            // Proyección 3D simple
-            // scale = focalLength / (focalLength + z) -> pero aquí z es distancia desde cámara
-            // Usaremos translate3d directamente
-            
-            // Efecto de desvanecimiento al fondo
-            const opacity = this.type === 'star' ? 1 : Math.min(1, (2000 - this.z) / 500);
-            this.element.style.opacity = opacity;
-
-            // Aplicar transformación
-            // Invertimos Z para CSS (negativo es lejos) pero nuestra lógica usa positivo como distancia
-            const cssZ = 1000 - this.z; 
-            
-            let transform = `translate3d(${this.x}px, ${this.y}px, ${cssZ}px)`;
-            
-            if (this.type === 'galaxy') {
-                transform += ` rotateX(${this.rotateX}deg) rotateY(${this.rotateY}deg)`;
-            }
-            
-            this.element.style.transform = transform;
-        }
-    }
-
-    // Inicializar objetos
-    for (let i = 0; i < starCount; i++) spaceObjects.push(new SpaceObject('star'));
-    for (let i = 0; i < planetCount; i++) spaceObjects.push(new SpaceObject('planet'));
-    for (let i = 0; i < galaxyCount; i++) spaceObjects.push(new SpaceObject('galaxy'));
-    for (let i = 0; i < nebulaCount; i++) spaceObjects.push(new SpaceObject('nebula'));
-
-    // Generador de estrellas fugaces
-    function createShootingStar() {
-        const star = document.createElement('div');
-        star.classList.add('shooting-star');
-        star.style.left = `${Math.random() * 100}vw`;
-        star.style.top = `${Math.random() * 100}vh`;
-        star.style.transform = `rotate(${Math.random() * 45}deg)`;
-        bgAnimation.appendChild(star);
+    for (let i = 0; i < shapeCount; i++) {
+        const shape = document.createElement('div');
+        shape.classList.add('tech-shape');
         
-        setTimeout(() => { star.remove(); }, 1000);
+        // Tamaño aleatorio
+        const size = Math.random() * (maxSize - minSize) + minSize;
+        shape.style.width = `${size}px`;
+        shape.style.height = `${size}px`;
         
-        // Próxima estrella fugaz en tiempo aleatorio
-        setTimeout(createShootingStar, Math.random() * 3000 + 1000);
-    }
-    createShootingStar();
-
-    // Loop de animación
-    function animateSpace() {
-        // Interpolación suave de velocidad (Efecto aceleración/frenado)
-        speed += (targetSpeed - speed) * 0.05;
+        // Posición horizontal aleatoria
+        shape.style.left = `${Math.random() * 100}vw`;
         
-        spaceObjects.forEach(obj => obj.update());
-        requestAnimationFrame(animateSpace);
+        // Animación desfasada para naturalidad
+        const duration = Math.random() * 15 + 15; // Entre 15 y 30 segundos
+        const delay = Math.random() * 20; // Retraso inicial
+        
+        shape.style.animationDuration = `${duration}s`;
+        shape.style.animationDelay = `-${delay}s`; // Negativo para que empiecen ya en movimiento
+
+        bgAnimation.appendChild(shape);
     }
-    animateSpace();
-
-    // Control de velocidad con el mouse (Efecto Hiperespacio)
-    document.addEventListener('mousedown', () => {
-        if (!isNavigating) targetSpeed = 150; // Velocidad Warp mucho más intensa
-    }); 
-    document.addEventListener('mouseup', () => {
-        if (!isNavigating) targetSpeed = 2; // Volver a la nueva velocidad base
-    });
-
-    // --- FIN SISTEMA 3D ---
 
     document.addEventListener('mousemove', (e) => {
         // Calcular la posición del mouse relativa al centro de la pantalla
@@ -170,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const bgY = y / bgFactor;
         if (bgAnimation) {
             // Usamos rotate para cambiar el ángulo de visión del espacio 3D
-            bgAnimation.style.transform = `rotateY(${bgX * 0.1}deg) rotateX(${-bgY * 0.1}deg)`;
+            bgAnimation.style.transform = `rotateY(${bgX * 0.02}deg) rotateX(${-bgY * 0.02}deg)`;
         }
     });
 
@@ -206,9 +87,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const link = btn.getAttribute('href') || btn.querySelector('a')?.getAttribute('href');
             
             if (link) {
-                e.preventDefault(); // Detenemos la carga inmediata
-                isNavigating = true; // Bloqueamos otros cambios de velocidad
-                targetSpeed = 500; // Velocidad extrema para la transición
+                e.preventDefault(); 
+                // isNavigating = true; // Variable ya no necesaria
 
                 // Efecto visual: La interfaz se desvanece y hace zoom hacia ti
                 const container = document.querySelector('.main-container');
