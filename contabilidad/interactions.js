@@ -2,8 +2,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isFinePointer = window.matchMedia('(pointer: fine)').matches;
 
+    const formatCOP = (amount) => new Intl.NumberFormat('es-CO', {
+        style: 'currency',
+        currency: 'COP',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+    }).format(amount);
+
     /* ============================================================
-       PRELOADER — carga simulada + salida "portal" del logo
+       PRELOADER — un balance que "cuadra" antes de que el logo
+       se inserte en pantalla (misma mecánica de salida del sitio)
        ============================================================ */
     (function initPreloader() {
         const preloader = document.getElementById('preloader');
@@ -16,7 +24,30 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const DURATION = 1900;
+        // Cifras ilustrativas para la animación del balance del preloader
+        const rows = [
+            { el: document.getElementById('ledgerIngresos'), target: 48500000, delay: 500 },
+            { el: document.getElementById('ledgerEgresos'), target: 31200000, delay: 820 },
+            { el: document.getElementById('ledgerBalance'), target: 17300000, delay: 1140 },
+        ];
+
+        rows.forEach(({ el, target, delay }) => {
+            if (!el) return;
+            setTimeout(() => animateCount(el, target, 650), delay);
+        });
+
+        function animateCount(el, target, duration) {
+            const start = performance.now();
+            function step(now) {
+                const t = Math.min(1, (now - start) / duration);
+                const eased = 1 - Math.pow(1 - t, 3);
+                el.textContent = formatCOP(Math.round(eased * target));
+                if (t < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+        }
+
+        const DURATION = 3400; // deja respirar la secuencia del balance + logo
         const start = performance.now();
         let finished = false;
 
@@ -37,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
         requestAnimationFrame(tick);
 
         // Red de seguridad: nunca dejar al usuario atrapado en la carga
-        setTimeout(finish, 4500);
+        setTimeout(finish, 6000);
 
         function finish() {
             if (finished) return;
@@ -57,28 +88,29 @@ document.addEventListener('DOMContentLoaded', () => {
        ============================================================ */
     if (isFinePointer && !reducedMotion) {
         const glow = document.getElementById('cursorGlow');
-        let gx = window.innerWidth / 2, gy = window.innerHeight / 2;
-        let tx = gx, ty = gy;
+        if (glow) {
+            let gx = window.innerWidth / 2, gy = window.innerHeight / 2;
+            let tx = gx, ty = gy;
 
-        window.addEventListener('mousemove', (e) => {
-            tx = e.clientX; ty = e.clientY;
-            glow.classList.add('is-active');
-        });
+            window.addEventListener('mousemove', (e) => {
+                tx = e.clientX; ty = e.clientY;
+                glow.classList.add('is-active');
+            });
 
-        function animateGlow() {
-            gx += (tx - gx) * 0.12;
-            gy += (ty - gy) * 0.12;
-            glow.style.transform = `translate(${gx}px, ${gy}px)`;
-            requestAnimationFrame(animateGlow);
+            (function animateGlow() {
+                gx += (tx - gx) * 0.12;
+                gy += (ty - gy) * 0.12;
+                glow.style.transform = `translate(${gx}px, ${gy}px)`;
+                requestAnimationFrame(animateGlow);
+            })();
         }
-        animateGlow();
     }
 
     /* ============================================================
        BARRA DE PROGRESO DE SCROLL + HEADER SÓLIDO AL BAJAR
        ============================================================ */
     const scrollProgress = document.getElementById('scrollProgress');
-    const siteHeader = document.getElementById('siteHeader');
+    const nav = document.getElementById('main-nav');
 
     function onScroll() {
         const doc = document.documentElement;
@@ -86,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const scrollHeight = (doc.scrollHeight || document.body.scrollHeight) - doc.clientHeight;
         const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
         if (scrollProgress) scrollProgress.style.width = progress + '%';
-        if (siteHeader) siteHeader.classList.toggle('scrolled', scrollTop > 40);
+        if (nav) nav.classList.toggle('scrolled', scrollTop > 40);
     }
     document.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
@@ -95,18 +127,18 @@ document.addEventListener('DOMContentLoaded', () => {
        MENÚ MÓVIL
        ============================================================ */
     const navToggle = document.getElementById('navToggle');
-    const mainNav = document.getElementById('mainNav');
+    const navMenu = document.querySelector('.nav-menu');
 
-    if (navToggle && mainNav) {
+    if (navToggle && navMenu) {
         navToggle.addEventListener('click', () => {
-            const isOpen = mainNav.classList.toggle('is-open');
+            const isOpen = navMenu.classList.toggle('is-open');
             navToggle.classList.toggle('is-open', isOpen);
             navToggle.setAttribute('aria-expanded', String(isOpen));
         });
 
-        mainNav.querySelectorAll('a').forEach((link) => {
+        navMenu.querySelectorAll('a').forEach((link) => {
             link.addEventListener('click', () => {
-                mainNav.classList.remove('is-open');
+                navMenu.classList.remove('is-open');
                 navToggle.classList.remove('is-open');
                 navToggle.setAttribute('aria-expanded', 'false');
             });
@@ -137,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
        ============================================================ */
     if (isFinePointer && !reducedMotion) {
         document.querySelectorAll('[data-tilt]').forEach((card) => {
-            const strength = 8;
+            const strength = 7;
 
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
@@ -182,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
             canvas.style.height = height + 'px';
             ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-            const count = Math.min(90, Math.round((width * height) / 16000));
+            const count = Math.min(80, Math.round((width * height) / 18000));
             particles = Array.from({ length: count }, () => ({
                 x: Math.random() * width,
                 y: Math.random() * height,

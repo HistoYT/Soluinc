@@ -1,0 +1,324 @@
+/* ============================================================
+   SOLUINC — Preloader temática contable/financiera
+   Un balance que "cuadra" antes de que el logo se inserte en
+   pantalla (misma mecánica de salida que el resto del sitio).
+   ============================================================ */
+
+.preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--navy-950);
+    clip-path: circle(150% at 50% 45%);
+    transition: clip-path 1s var(--ease-out-expo);
+}
+
+.preloader-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(43, 180, 236, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(43, 180, 236, 0.08) 1px, transparent 1px);
+    background-size: 46px 46px;
+    mask-image: radial-gradient(circle at 50% 45%, #000 0%, transparent 70%);
+    -webkit-mask-image: radial-gradient(circle at 50% 45%, #000 0%, transparent 70%);
+}
+
+.preloader-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.8rem;
+    perspective: 1200px;
+    padding: 1.5rem;
+}
+
+/* --- Tarjeta de balance --- */
+.ledger-window {
+    width: clamp(260px, 82vw, 400px);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.65);
+    opacity: 0;
+    transform: translateY(18px);
+    animation: ledgerWindowIn 0.6s var(--ease-out-expo) forwards;
+    animation-delay: 0.1s;
+}
+
+@keyframes ledgerWindowIn {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.ledger-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.65rem 0.9rem;
+    background: rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.ledger-icon { font-size: 0.9rem; color: var(--blue-sky); }
+
+.ledger-title {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    color: var(--gray);
+}
+
+.ledger-body { padding: 1.1rem 1.3rem 1.3rem; }
+
+.ledger-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transform: translateY(6px);
+    animation: ledgerRowIn 0.5s var(--ease-out-expo) forwards;
+    animation-delay: calc(0.5s + (var(--d, 0) * 0.32s));
+}
+
+.ledger-row--total { border-bottom: none; padding-top: 0.7rem; }
+
+@keyframes ledgerRowIn {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.ledger-label {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.03em;
+    color: var(--gray);
+}
+
+.ledger-row--total .ledger-label { color: var(--dark-text); font-weight: 600; }
+
+.ledger-value {
+    font-family: var(--font-mono);
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--dark-text);
+    font-variant-numeric: tabular-nums;
+}
+
+.ledger-row--total .ledger-value {
+    color: var(--blue-sky);
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.ledger-status {
+    margin-top: 0.9rem;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.06em;
+    color: #4ade80;
+    opacity: 0;
+    transform: translateY(6px);
+    animation: ledgerRowIn 0.5s var(--ease-out-expo) forwards;
+    animation-delay: calc(0.5s + (var(--d, 0) * 0.32s));
+}
+
+.ledger-status .check { margin-right: 0.4em; }
+
+/* --- Logo insertándose (mismo lenguaje que el resto del sitio) --- */
+.preloader-logo-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+    animation-delay: 1.75s;
+}
+
+.preloader-glow {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(43, 180, 236, 0.35), transparent 70%);
+    filter: blur(10px);
+    animation: glowPulse 2.6s ease-in-out infinite;
+    animation-delay: 1.75s;
+}
+
+.preloader-ring {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 150px;
+    height: 130px;
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+    background: linear-gradient(135deg, rgba(127, 212, 244, 0.55), rgba(43, 180, 236, 0.15));
+    animation: ringPulse 2.4s var(--ease-out-expo) infinite;
+    animation-delay: 1.75s;
+}
+
+.preloader-ring::after {
+    content: '';
+    position: absolute;
+    inset: 1.5px;
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+    background: var(--navy-950);
+}
+
+.preloader-ring--2 { animation-delay: 2.55s; }
+
+.preloader-logo {
+    position: relative;
+    width: clamp(140px, 26vw, 220px);
+    height: auto;
+    opacity: 0;
+    transform-origin: center;
+    animation: logoInsert 1.3s var(--ease-out-expo) forwards;
+    animation-delay: 1.85s;
+    filter: drop-shadow(0 0 26px rgba(43, 180, 236, 0.35));
+}
+
+.preloader-bar-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    opacity: 0;
+    animation: fadeIn 0.6s ease forwards;
+    animation-delay: 2.55s;
+    font-family: var(--font-mono);
+}
+
+.preloader-bracket { color: var(--gray); font-size: 0.85rem; }
+
+.preloader-bar {
+    width: clamp(120px, 24vw, 180px);
+    height: 5px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+}
+
+.preloader-bar-fill {
+    width: 0%;
+    height: 100%;
+    background: var(--grad-text);
+    transition: width 0.2s linear;
+}
+
+.preloader-percent {
+    font-size: 0.78rem;
+    letter-spacing: 0.03em;
+    color: var(--blue-sky);
+    font-variant-numeric: tabular-nums;
+    min-width: 2.6em;
+}
+
+.preloader-caption {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--gray);
+    opacity: 0;
+    animation: fadeIn 0.6s ease forwards;
+    animation-delay: 2.7s;
+}
+
+.preloader--exit .preloader-logo {
+    animation: logoPush 0.7s var(--ease-out-expo) forwards;
+}
+
+.preloader--exit {
+    clip-path: circle(0% at 50% 45%);
+}
+
+.preloader--hidden { display: none; }
+
+@keyframes logoInsert {
+    0% {
+        opacity: 0;
+        transform: translateZ(-700px) rotateY(38deg) rotateX(18deg) scale(0.35);
+        filter: blur(14px) drop-shadow(0 0 0 rgba(43, 180, 236, 0));
+    }
+    55% {
+        opacity: 1;
+        filter: blur(0) drop-shadow(0 0 26px rgba(43, 180, 236, 0.35));
+    }
+    72% { transform: translateZ(50px) rotateY(-7deg) rotateX(-3deg) scale(1.08); }
+    100% { transform: translateZ(0) rotateY(0) rotateX(0) scale(1); }
+}
+
+@keyframes logoPush {
+    to {
+        opacity: 0;
+        transform: translateZ(400px) scale(1.35);
+        filter: blur(6px);
+    }
+}
+
+@keyframes ringPulse {
+    0% { transform: scale(0.75); opacity: 0; }
+    40% { opacity: 0.7; }
+    100% { transform: scale(1.55); opacity: 0; }
+}
+
+@keyframes glowPulse {
+    0%, 100% { opacity: 0.55; transform: scale(0.92); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
+@keyframes fadeIn { to { opacity: 1; } }
+
+/* ============================================================
+   BRILLO AMBIENTAL + BARRA DE PROGRESO DE SCROLL
+   ============================================================ */
+.cursor-glow {
+    position: fixed;
+    top: 0; left: 0;
+    width: 460px;
+    height: 460px;
+    margin: -230px 0 0 -230px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(43, 180, 236, 0.10), transparent 70%);
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    will-change: transform;
+}
+
+.cursor-glow.is-active { opacity: 1; }
+
+.scroll-progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    width: 0%;
+    background: var(--grad-text);
+    z-index: 1000;
+    box-shadow: 0 0 12px rgba(43, 180, 236, 0.6);
+}
+
+/* ============================================================
+   ACCESIBILIDAD — reduced motion
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    [data-reveal] { opacity: 1 !important; transform: none !important; }
+}

@@ -1,0 +1,159 @@
+.team {
+    padding: 6rem 6% 7rem;
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.profile-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.35rem;
+    padding: 2.6rem 2rem 2.2rem;
+    border-radius: 28px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    overflow: hidden;
+    transition: transform 0.45s var(--ease-out-expo), opacity 0.8s var(--ease-out-expo), border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.profile-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(127, 212, 244, 0.35);
+    box-shadow: 0 30px 60px -25px rgba(0, 0, 0, 0.65);
+}
+
+.profile-photo {
+    position: relative;
+    width: 124px;
+    height: 124px;
+    border-radius: 50%;
+    padding: 4px;
+    background: var(--grad-brand);
+    margin-bottom: 0.9rem;
+    flex-shrink: 0;
+}
+
+.profile-photo-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--navy-900);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Cuando reemplaces el placeholder por una foto real: <img class="profile-photo-img" src="..." alt="Nombre completo"> */
+.profile-photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-placeholder-icon {
+    width: 52px;
+    height: 52px;
+    color: var(--blue-sky);
+    opacity: 0.85;
+}
+
+.profile-badge {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--grad-brand);
+    border: 3px solid var(--navy-950);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.profile-badge svg { width: 14px; height: 14px; }
+
+.profile-name {
+    font-size: 1.24rem;
+    font-weight: 700;
+    margin-top: 0.2rem;
+}
+
+.profile-role {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--blue-sky);
+    background: rgba(43, 180, 236, 0.1);
+    border: 1px solid rgba(127, 212, 244, 0.25);
+    padding: 0.32rem 0.85rem;
+    border-radius: 50px;
+    margin-bottom: 0.6rem;
+}
+
+.profile-degree {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    font-size: 0.85rem;
+    color: var(--gray);
+    margin-bottom: 0.7rem;
+}
+
+.profile-degree svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    color: var(--gold);
+}
+
+.profile-bio {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: rgba(238, 247, 252, 0.68);
+    font-weight: 300;
+}
+
+.profile-contact {
+    margin-top: 1.3rem;
+    padding-top: 1rem;
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--blue-sky);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.profile-contact svg { transition: transform 0.3s var(--ease-out-expo); }
+.profile-card:hover .profile-contact svg { transform: translateX(4px); }
+
+.team-note {
+    text-align: center;
+    font-size: 0.82rem;
+    color: rgba(238, 247, 252, 0.4);
+    margin-top: 2.2rem;
+}
+
+@media (max-width: 768px) {
+    .team-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+}

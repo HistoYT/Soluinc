@@ -1,11 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
 :root {
-    --primary-blue: #005f99;
-    --secondary-blue: #4db8ff;
-    --dark-text: #050a10;
-    --light-bg: #f8fbff;
+    /* Paleta re-tematizada para calzar con el home (derivada del logo) */
+    --primary-blue: #1c8fc9;
+    --secondary-blue: #2bb4ec;
+    --dark-text: #eef7fc;
+    --light-bg: #05121f;
     --white: #ffffff;
-    --gray: #666;
+    --gray: #9db3c7;
     --font-main: 'Montserrat', sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+    --ink: #030c16;
+    --navy-950: #05121f;
+    --navy-900: #081b2c;
+    --blue-deep: #0e4a72;
+    --blue-sky: #7fd4f4;
+
+    --grad-brand: linear-gradient(135deg, var(--blue-deep) 0%, var(--primary-blue) 48%, var(--secondary-blue) 100%);
+    --grad-text: linear-gradient(90deg, var(--blue-sky), var(--secondary-blue) 55%, var(--primary-blue));
+    --glass-bg: linear-gradient(160deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015));
+    --glass-border: rgba(255, 255, 255, 0.09);
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 * {
@@ -14,12 +30,33 @@
     box-sizing: border-box;
 }
 
+html { scroll-behavior: smooth; }
+
 body {
     font-family: var(--font-main);
     background-color: var(--light-bg);
     color: var(--dark-text);
     line-height: 1.6;
+    overflow-x: hidden;
 }
+
+body.no-scroll { overflow: hidden; height: 100vh; }
+
+.text-gradient {
+    background: var(--grad-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(34px);
+    transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+    transition-delay: calc(var(--i, 0) * 0.12s);
+}
+
+[data-reveal].is-visible { opacity: 1; transform: translateY(0); }
 
 .container {
     width: 90%;
@@ -33,10 +70,10 @@ body {
 
 .section-title {
     font-size: 2.5rem;
-    color: var(--primary-blue);
+    color: var(--dark-text);
     margin-bottom: 1rem;
     text-align: center;
-    font-weight: 700;
+    font-weight: 800;
 }
 
 .section-subtitle {
@@ -44,6 +81,18 @@ body {
     color: var(--gray);
     margin-bottom: 3rem;
     font-size: 1.1rem;
+}
+
+.section-tag {
+    display: block;
+    text-align: center;
+    font-size: 0.76rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.24em;
+    color: var(--blue-sky);
+    margin-bottom: 1rem;
+    font-family: var(--font-mono);
 }
 
 /* --- Responsive Design --- */

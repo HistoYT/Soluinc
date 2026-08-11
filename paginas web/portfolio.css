@@ -1,6 +1,6 @@
 .portfolio-section {
     /* Fondo oscuro para resaltar el efecto futurista/neón */
-    background: linear-gradient(135deg, #050a10 0%, #001f33 100%);
+    background: linear-gradient(135deg, var(--navy-950) 0%, var(--blue-deep) 100%);
     color: var(--white);
     overflow: hidden; /* Para contener efectos de resplandor */
     position: relative;
@@ -73,6 +73,7 @@
     border-radius: 16px;
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition-delay: calc(var(--i, 0) * 0.12s);
     backdrop-filter: blur(10px);
     height: 400px; /* Altura fija para uniformidad */
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
@@ -134,10 +135,6 @@
     height: 100%;
 }
 
-.project-card:hover .card-overlay {
-    /* El transform ya no es necesario aquí */
-}
-
 .card-overlay h3 {
     color: var(--white);
     font-size: 1.5rem;
@@ -183,16 +180,19 @@
 }
 
 .tech-tag {
-    background: rgba(77, 184, 255, 0.15);
+    background: rgba(43, 180, 236, 0.15);
     color: var(--secondary-blue);
     padding: 0.3rem 0.8rem;
-    border-radius: 50px;
-    font-size: 0.75rem;
-    border: 1px solid rgba(77, 184, 255, 0.3);
+    border-radius: 6px;
+    font-size: 0.72rem;
+    border: 1px solid rgba(43, 180, 236, 0.3);
     font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    font-family: var(--font-mono);
+    letter-spacing: 0.02em;
 }
+
+.tech-tag::before { content: '<'; opacity: 0.6; }
+.tech-tag::after { content: '/>'; opacity: 0.6; }
 
 /* Móviles pequeños */
 @media (max-width: 480px) {

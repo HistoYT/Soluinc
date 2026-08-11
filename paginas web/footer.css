@@ -1,23 +1,25 @@
 .main-footer {
-    background-color: var(--primary-blue);
-    color: var(--white);
-    padding: 2rem 0;
+    background-color: var(--navy-950);
+    color: var(--dark-text);
+    padding: 2.4rem 0;
     text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .footer-content p {
     margin-bottom: 0.5rem;
-    font-size: 0.9rem;
-    opacity: 0.9;
+    font-size: 0.85rem;
+    color: rgba(238, 247, 252, 0.5);
 }
 
 .footer-links a {
-    color: var(--white);
-    text-decoration: underline;
-    font-size: 0.9rem;
-    opacity: 0.8;
+    color: var(--blue-sky);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 600;
+    transition: color 0.3s ease;
 }
 
 .footer-links a:hover {
-    opacity: 1;
+    color: var(--secondary-blue);
 }

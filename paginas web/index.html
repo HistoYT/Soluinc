@@ -9,21 +9,70 @@
     
     <!-- Estilos Modulares -->
     <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="preloader.css">
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="about.css">
     <link rel="stylesheet" href="portfolio.css">
     <link rel="stylesheet" href="contact.css">
     <link rel="stylesheet" href="footer.css">
+    <noscript>
+        <style>
+            #preloader, .cursor-glow, .scroll-progress { display: none !important; }
+            body { overflow: visible !important; height: auto !important; }
+            [data-reveal] { opacity: 1 !important; transform: none !important; }
+        </style>
+    </noscript>
 </head>
-<body>
-    
+<body class="no-scroll">
+
+    <!-- ===================== PRELOADER ===================== -->
+    <div id="preloader" class="preloader" role="status" aria-label="Cargando SoluInc">
+        <div class="preloader-grid"></div>
+        <div class="preloader-content">
+            <div class="terminal-window">
+                <div class="terminal-bar">
+                    <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+                    <span class="terminal-title">soluinc — build.sh</span>
+                </div>
+                <div class="terminal-body">
+                    <p class="term-line" style="--d:0"><span class="prompt">$</span>npm run build <span class="term-comment">// soluinc-web</span></p>
+                    <p class="term-line" style="--d:1"><span class="ok">✓</span>compilando componentes...</p>
+                    <p class="term-line" style="--d:2"><span class="ok">✓</span>optimizando assets...</p>
+                    <p class="term-line" style="--d:3"><span class="ok">✓</span>desplegando interfaz...</p>
+                    <p class="term-line" style="--d:4"><span class="prompt">$</span><span class="typed-caret">_</span></p>
+                </div>
+            </div>
+
+            <div class="preloader-logo-wrap">
+                <div class="preloader-glow"></div>
+                <span class="preloader-ring"></span>
+                <span class="preloader-ring preloader-ring--2"></span>
+                <img src="../logo blanco (1).png" alt="SoluInc" class="preloader-logo" id="preloaderLogo">
+            </div>
+
+            <div class="preloader-bar-wrap">
+                <span class="preloader-bracket">[</span>
+                <div class="preloader-bar"><div class="preloader-bar-fill" id="preloaderFill"></div></div>
+                <span class="preloader-bracket">]</span>
+                <span class="preloader-percent" id="preloaderPercent">0%</span>
+            </div>
+            <p class="preloader-caption">&lt;/&gt; construyendo tu próxima web</p>
+        </div>
+    </div>
+
+    <!-- Brillo ambiental que sigue al cursor -->
+    <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+    <!-- Barra de progreso de scroll -->
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
     <!-- HEADER & HERO -->
     <header class="header">
         <div class="nav-container" id="main-nav">
             <div class="logo">
                 <a href="../index.html">
                     <!-- Enlace relativo a la imagen en la carpeta superior -->
-                    <img src="../logo negro.png" alt="Soluinc Logo">
+                    <img src="../logo blanco (1).png" alt="Soluinc Logo">
                 </a>
             </div>
             <nav class="nav-menu">
@@ -32,14 +81,16 @@
                 <a href="#contact" class="btn-cta">Cotizar</a>
             </nav>
         </div>
-        
+
         <div class="hero-slider">
             <!-- Slides con imágenes de programación y tecnología -->
             <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1920&q=80');"></div>
             <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1920&q=80');"></div>
             <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1920&q=80');"></div>
+            <div class="hero-code-grid" aria-hidden="true"></div>
 
             <div class="hero-content">
+                <span class="hero-eyebrow">&lt;/&gt; Desarrollo &amp; Programación a medida</span>
                 <h1>Tu Negocio Merece una Web de Alto Impacto</h1>
                 <p>Desarrollamos sitios web modernos, rápidos y optimizados que convierten visitantes en clientes.</p>
                 <a href="#contact" class="btn-hero">Inicia tu Proyecto</a>
@@ -50,8 +101,9 @@
     <!-- QUIENES SOMOS -->
     <section id="about" class="section about-section">
         <div class="container">
-            <h2 class="section-title">Quiénes Somos</h2>
-            <div class="about-grid">
+            <span class="section-tag" data-reveal>&lt;/&gt; Quiénes somos</span>
+            <h2 class="section-title" data-reveal>Quiénes Somos</h2>
+            <div class="about-grid" data-reveal>
                 <div class="about-text">
                     <h3>Expertos en Transformación Digital</h3>
                     <p>En Soluinc, fusionamos diseño creativo con tecnología de punta. No solo hacemos páginas web; construimos herramientas de venta y posicionamiento de marca.</p>
@@ -74,12 +126,13 @@
         <!-- Capa de fondo dinámico -->
         <div class="portfolio-dynamic-bg"></div>
         <div class="container">
-            <h2 class="section-title">Nuestro Trabajo</h2>
-            <p class="section-subtitle">Proyectos recientes que impulsan negocios</p>
+            <span class="section-tag" data-reveal>&lt;/&gt; Portafolio</span>
+            <h2 class="section-title" data-reveal>Nuestro Trabajo</h2>
+            <p class="section-subtitle" data-reveal>Proyectos recientes que impulsan negocios</p>
             <div class="portfolio-grid">
-                
+
                 <!-- Card 1 -->
-                <a href="https://konverge.com.co/" class="project-card" data-bg="image.png">
+                <a href="https://konverge.com.co/" class="project-card" data-bg="image.png" data-reveal style="--i:0">
                     <div class="card-image" style="background-image: url('image.png');"></div>
                     <div class="card-overlay">
                         <div class="card-description">
@@ -94,7 +147,7 @@
                 </a>
 
                 <!-- Card 2 -->
-                <a href="https://easy-clean.vercel.app/" class="project-card" data-bg="image2.png">
+                <a href="https://easy-clean.vercel.app/" class="project-card" data-bg="image2.png" data-reveal style="--i:1">
                     <div class="card-image" style="background-image: url('image2.png');"></div>
                     <div class="card-overlay">
                         <div class="card-description">
@@ -109,7 +162,7 @@
                 </a>
 
                 <!-- Card 3 -->
-                <a href="https://universal-q.vercel.app/" class="project-card" data-bg="image3.png">
+                <a href="https://universal-q.vercel.app/" class="project-card" data-bg="image3.png" data-reveal style="--i:2">
                     <div class="card-image" style="background-image: url('image3.png');"></div>
                     <div class="card-overlay">
                         <div class="card-description">
@@ -130,7 +183,8 @@
     <!-- COTIZACION -->
     <section id="contact" class="section contact-section">
         <div class="container">
-            <div class="contact-box">
+            <div class="contact-box" data-reveal>
+                <span class="section-tag">&lt;/&gt; Cotizador</span>
                 <h2 class="section-title">Calcula tu Cotización</h2>
                 <p>Selecciona las opciones que mejor se adapten a tu proyecto y obtén una estimación en tiempo real.</p>
                 
@@ -179,7 +233,7 @@
                                         <li>Página informativa</li>
                                         <li>4 páginas adicionales gratis</li>
                                         <li>Integración de videos</li>
-                                        <li>SEO </li>
+                                        <li>SEO </li> 
                                         <li>1 mes de mantenimiento gratis</li>
                                         <li>Web Responsive</li>
                                     </ul>
@@ -320,14 +374,19 @@
     <!-- FOOTER -->
     <footer class="main-footer">
         <div class="footer-content">
-            <p>&copy; 2024 Soluinc. Todos los derechos reservados.</p>
+            <p>&copy; <span id="year"></span> Soluinc. Todos los derechos reservados.</p>
             <div class="footer-links">
                 <a href="../index.html">Volver al Home</a>
             </div>
         </div>
     </footer>
 
+    <script src="interactions.js"></script>
     <script>
+        // Año dinámico en el footer
+        const yearEl = document.getElementById('year');
+        if (yearEl) yearEl.textContent = new Date().getFullYear();
+
         // Animación del Header al hacer scroll
         const nav = document.getElementById('main-nav');
         window.addEventListener('scroll', () => {

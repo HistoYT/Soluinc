@@ -1,6 +1,6 @@
 .contact-section {
     position: relative;
-    background-color: #f8fbff;
+    background-color: var(--navy-950);
     overflow: hidden; /* Necesario para los efectos de fondo */
     perspective: 1000px;
 }
@@ -13,9 +13,9 @@
     left: -50%;
     width: 200%;
     height: 200%;
-    background-image: 
-        linear-gradient(rgba(0, 95, 153, 0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 95, 153, 0.06) 1px, transparent 1px);
+    background-image:
+        linear-gradient(rgba(43, 180, 236, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(43, 180, 236, 0.08) 1px, transparent 1px);
     background-size: 60px 60px;
     transform: rotateX(60deg);
     animation: cyberGrid 3s linear infinite; /* Más rápido para efecto de velocidad */
@@ -36,15 +36,15 @@
     z-index: 1;
     max-width: 700px; /* Un poco más ancho para el look dashboard */
     margin: 0 auto;
-    background: rgba(255, 255, 255, 0.85);
+    background: var(--glass-bg);
     backdrop-filter: blur(20px); /* Efecto cristal esmerilado */
-    border: 1px solid rgba(255, 255, 255, 0.6);
+    border: 1px solid var(--glass-border);
     border-radius: 24px;
     padding: 3rem;
-    box-shadow: 
-        0 20px 50px rgba(0, 31, 51, 0.08),
-        0 0 0 1px rgba(255, 255, 255, 0.5) inset;
-    transition: transform 0.3s ease;
+    box-shadow:
+        0 20px 60px -20px rgba(0, 0, 0, 0.65),
+        0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+    transition: transform 0.3s ease, opacity 0.8s var(--ease-out-expo);
 }
 
 .quote-form {
@@ -77,8 +77,8 @@
     display: flex;
     align-items: center;
     padding: 1.2rem;
-    background: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(0, 95, 153, 0.1);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.09);
     border-radius: 12px;
     cursor: pointer;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -87,8 +87,8 @@
 
 .option-card:hover {
     transform: translateY(-5px) scale(1.02);
-    background: #fff;
-    box-shadow: 0 10px 25px rgba(77, 184, 255, 0.25);
+    background: rgba(255, 255, 255, 0.07);
+    box-shadow: 0 10px 25px rgba(43, 180, 236, 0.2);
     border-color: var(--secondary-blue);
 }
 
@@ -97,7 +97,7 @@
     content: '';
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.6), transparent);
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.12), transparent);
     transform: translateX(-100%);
     transition: 0.6s;
 }
@@ -116,16 +116,16 @@
 /* --- Estilo y Animación para la opción SELECCIONADA --- */
 .option-card.selected {
     /* La animación de contorno brillante que solicitaste */
-    background: rgba(240, 249, 255, 0.95);
+    background: rgba(43, 180, 236, 0.1);
     border-color: var(--primary-blue);
-    box-shadow: 0 0 20px rgba(77, 184, 255, 0.4);
+    box-shadow: 0 0 20px rgba(43, 180, 236, 0.35);
     animation: neonPulse 2s infinite ease-in-out;
 }
 
 .indicator {
     width: 24px;
     height: 24px;
-    border: 2px solid #cbd5e1;
+    border: 2px solid rgba(255, 255, 255, 0.25);
     border-radius: 50%;
     margin-right: 15px;
     display: flex;
@@ -133,7 +133,7 @@
     align-items: center;
     transition: all 0.3s ease;
     flex-shrink: 0;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.04);
 }
 
 .option-card input[type="checkbox"] ~ .indicator {
@@ -183,7 +183,7 @@
     flex-direction: column;
 }
 
-.opt-title { font-weight: 700; color: var(--dark-text); line-height: 1.2; font-size: 1.1rem; }
+.opt-title { font-weight: 700; color: var(--dark-text); line-height: 1.2; font-size: 1.1rem; font-family: var(--font-mono); }
 
 .opt-features {
     list-style: none;
@@ -217,20 +217,31 @@
 .input-group textarea {
     width: 100%;
     padding: 1rem;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--dark-text);
     border-radius: 8px;
     font-family: var(--font-main);
     transition: all 0.3s ease;
+}
+
+.input-group select option {
+    background: var(--navy-950);
+    color: var(--dark-text);
 }
 
 #maintenance_plan:focus,
 .input-group input:focus,
 .input-group textarea:focus {
     outline: none;
-    background: #fff;
+    background: rgba(255, 255, 255, 0.07);
     border-color: var(--primary-blue);
-    box-shadow: 0 0 15px rgba(77, 184, 255, 0.3);
+    box-shadow: 0 0 15px rgba(43, 180, 236, 0.3);
+}
+
+.input-group input::placeholder,
+.input-group textarea::placeholder {
+    color: rgba(238, 247, 252, 0.4);
 }
 
 /* Estilo específico para el contador de páginas */
@@ -248,8 +259,8 @@
 }
 
 .quote-summary {
-    background: rgba(5, 10, 16, 0.03); /* Fondo técnico oscuro muy sutil */
-    border: 1px solid rgba(77, 184, 255, 0.4);
+    background: rgba(43, 180, 236, 0.05);
+    border: 1px solid rgba(43, 180, 236, 0.35);
     border-radius: 16px;
     padding: 1.5rem;
     margin-top: 2.5rem;
@@ -257,7 +268,8 @@
     text-align: left;
     position: relative;
     overflow: hidden;
-    box-shadow: inset 0 0 20px rgba(77, 184, 255, 0.05);
+    box-shadow: inset 0 0 20px rgba(43, 180, 236, 0.06);
+    font-family: var(--font-mono);
 }
 
 /* Esquinas "Tech" para el resumen */
@@ -290,11 +302,11 @@
 
 .quote-summary p {
     margin-bottom: 0.5rem;
-    color: #444;
-    font-size: 1rem;
+    color: var(--gray);
+    font-size: 0.92rem;
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px dashed rgba(0,0,0,0.05);
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
     padding-bottom: 8px;
 }
 
@@ -336,7 +348,7 @@
 /* Existing btn-submit styles */
 .btn-submit {
     width: 100%;
-    background-color: var(--primary-blue);
+    background: var(--grad-brand);
     color: var(--white);
     border: none;
     padding: 1.2rem;
@@ -345,13 +357,13 @@
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    box-shadow: 0 4px 15px rgba(0, 95, 153, 0.3);
+    box-shadow: 0 4px 15px rgba(43, 180, 236, 0.3);
 }
 
 .btn-submit:hover {
-    background-color: #004470;
+    filter: brightness(1.1);
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 95, 153, 0.4);
+    box-shadow: 0 8px 20px rgba(43, 180, 236, 0.4);
 }
 
 /* --- Opciones de Envío --- */
@@ -371,17 +383,19 @@
 }
 
 .btn-whatsapp {
-    background-color: #25D366;
+    background: #25D366;
 }
 .btn-whatsapp:hover {
-    background-color: #1DA851;
+    background: #1DA851;
+    filter: none;
 }
 
 .btn-email {
-    background-color: #6c757d;
+    background: #3d5872;
 }
 .btn-email:hover {
-    background-color: #5a6268;
+    background: #33495f;
+    filter: none;
 }
 
 .btn-whatsapp::before, .btn-email::before {
@@ -419,16 +433,16 @@
     opacity: 1;
     margin-top: 2.5rem;
     padding-top: 2.5rem;
-    border-top-color: rgba(0, 95, 153, 0.3);
+    border-top-color: rgba(43, 180, 236, 0.3);
 }
 
 /* --- Keyframe Animations --- */
 
 /* Pulso Neón para selección */
 @keyframes neonPulse {
-    0% { box-shadow: 0 0 5px rgba(77, 184, 255, 0.4); border-color: var(--primary-blue); }
-    50% { box-shadow: 0 0 20px rgba(77, 184, 255, 0.7), inset 0 0 10px rgba(77, 184, 255, 0.1); border-color: var(--secondary-blue); }
-    100% { box-shadow: 0 0 5px rgba(77, 184, 255, 0.4); border-color: var(--primary-blue); }
+    0% { box-shadow: 0 0 5px rgba(43, 180, 236, 0.4); border-color: var(--primary-blue); }
+    50% { box-shadow: 0 0 20px rgba(43, 180, 236, 0.7), inset 0 0 10px rgba(43, 180, 236, 0.1); border-color: var(--secondary-blue); }
+    100% { box-shadow: 0 0 5px rgba(43, 180, 236, 0.4); border-color: var(--primary-blue); }
 }
 
 /* Efecto Glitch simple para números */

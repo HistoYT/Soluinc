@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contabilidad y Área Financiera - Soluinc</title>
+    <meta name="description" content="Contabilidad, cumplimiento tributario y asesoría financiera para tu empresa. Conoce al contador y al asesor financiero de SoluInc.">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Estilos Modulares -->
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="preloader.css">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="services.css">
+    <link rel="stylesheet" href="team.css">
+    <link rel="stylesheet" href="process.css">
+    <link rel="stylesheet" href="footer.css">
+    <noscript>
+        <style>
+            #preloader, .cursor-glow, .scroll-progress { display: none !important; }
+            body { overflow: visible !important; height: auto !important; }
+            [data-reveal] { opacity: 1 !important; transform: none !important; }
+        </style>
+    </noscript>
+</head>
+<body class="no-scroll">
+
+    <!-- Sprite SVG: gradiente de marca reutilizado por todos los iconos -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <defs>
+            <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#9FE3FB"/>
+                <stop offset="45%" stop-color="#2BB4EC"/>
+                <stop offset="100%" stop-color="#0E4A72"/>
+            </linearGradient>
+        </defs>
+    </svg>
+
+    <!-- ===================== PRELOADER ===================== -->
+    <div id="preloader" class="preloader" role="status" aria-label="Cargando SoluInc">
+        <div class="preloader-grid"></div>
+        <div class="preloader-content">
+            <div class="ledger-window">
+                <div class="ledger-bar">
+                    <span class="ledger-icon">▤</span>
+                    <span class="ledger-title">balance_general.xlsx</span>
+                </div>
+                <div class="ledger-body">
+                    <div class="ledger-row" style="--d:0">
+                        <span class="ledger-label">Ingresos</span>
+                        <span class="ledger-value" id="ledgerIngresos">$0</span>
+                    </div>
+                    <div class="ledger-row" style="--d:1">
+                        <span class="ledger-label">Egresos</span>
+                        <span class="ledger-value" id="ledgerEgresos">$0</span>
+                    </div>
+                    <div class="ledger-row ledger-row--total" style="--d:2">
+                        <span class="ledger-label">Balance</span>
+                        <span class="ledger-value" id="ledgerBalance">$0</span>
+                    </div>
+                    <p class="ledger-status" style="--d:3"><span class="check">✓</span>cuentas cuadradas</p>
+                </div>
+            </div>
+
+            <div class="preloader-logo-wrap">
+                <div class="preloader-glow"></div>
+                <span class="preloader-ring"></span>
+                <span class="preloader-ring preloader-ring--2"></span>
+                <img src="../logo blanco (1).png" alt="SoluInc" class="preloader-logo" id="preloaderLogo">
+            </div>
+
+            <div class="preloader-bar-wrap">
+                <span class="preloader-bracket">[</span>
+                <div class="preloader-bar"><div class="preloader-bar-fill" id="preloaderFill"></div></div>
+                <span class="preloader-bracket">]</span>
+                <span class="preloader-percent" id="preloaderPercent">0%</span>
+            </div>
+            <p class="preloader-caption">construyendo tu área contable y financiera</p>
+        </div>
+    </div>
+
+    <!-- Brillo ambiental que sigue al cursor -->
+    <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+    <!-- Barra de progreso de scroll -->
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+    <!-- HEADER & HERO -->
+    <header class="header">
+        <div class="nav-container" id="main-nav">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../logo blanco (1).png" alt="Soluinc Logo">
+                </a>
+            </div>
+            <nav class="nav-menu" id="navMenu">
+                <a href="#servicios">Servicios</a>
+                <a href="#equipo">Equipo</a>
+                <a href="#proceso">Proceso</a>
+                <a href="#contacto" class="btn-cta">Agenda una asesoría</a>
+            </nav>
+            <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+
+        <section class="hero">
+            <canvas id="particles" class="particles-canvas" aria-hidden="true"></canvas>
+            <div class="hero-glow" aria-hidden="true"></div>
+            <div class="hero-grid" aria-hidden="true"></div>
+            <div class="hero-bars" aria-hidden="true">
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+
+            <div class="hero-inner">
+                <span class="hero-eyebrow">$ Contabilidad &amp; Finanzas</span>
+                <h1>Claridad financiera para <span class="text-gradient">decisiones seguras.</span></h1>
+                <p>Llevamos tu contabilidad al día, cumplimos tus obligaciones tributarias y te acompañamos con <strong>asesoría financiera</strong> para que cada decisión de tu empresa esté respaldada por números claros.</p>
+                <div class="hero-actions">
+                    <a href="#equipo" class="btn btn-primary">
+                        <span>Conoce al equipo</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    </a>
+                    <a href="https://wa.me/573167578219?text=Hola%20SoluInc%2C%20me%20gustar%C3%ADa%20una%20asesor%C3%ADa%20contable%20y%20financiera." target="_blank" rel="noopener" class="btn btn-ghost">
+                        Hablar con un asesor
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-scroll-cue">
+                <span class="mouse"><span class="wheel"></span></span>
+                Desliza para explorar
+            </div>
+        </section>
+    </header>
+
+    <main>
+        <!-- ===================== SERVICIOS ===================== -->
+        <section class="services" id="servicios">
+            <div class="section-head" data-reveal>
+                <span class="section-tag">Nuestros servicios</span>
+                <h2 class="section-title">Todo tu <span class="text-gradient">frente contable y financiero.</span></h2>
+                <p class="section-subtitle">Desde llevar tus libros al día hasta planear el futuro financiero de tu empresa.</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card" data-reveal data-tilt style="--i:0">
+                    <div class="card-glow" aria-hidden="true"></div>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 48 48" fill="none" stroke="url(#brandGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="10" y="5" width="28" height="38" rx="4"/>
+                            <path d="M16 15h16M16 22h16M16 29h10"/>
+                            <path d="M15 35l3 3 7-8" stroke-width="2.3"/>
+                        </svg>
+                    </div>
+                    <h3>Contabilidad General</h3>
+                    <p>Libros contables, estados financieros y registros al día, siempre listos para consulta.</p>
+                </div>
+
+                <div class="service-card" data-reveal data-tilt style="--i:1">
+                    <div class="card-glow" aria-hidden="true"></div>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 48 48" fill="none" stroke="url(#brandGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="16" cy="16" r="4.5"/>
+                            <circle cx="32" cy="32" r="4.5"/>
+                            <path d="M34 14L14 34"/>
+                        </svg>
+                    </div>
+                    <h3>Declaraciones y Cumplimiento</h3>
+                    <p>Declaraciones tributarias presentadas a tiempo y sin sorpresas con la DIAN.</p>
+                </div>
+
+                <div class="service-card" data-reveal data-tilt style="--i:2">
+                    <div class="card-glow" aria-hidden="true"></div>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 48 48" fill="none" stroke="url(#brandGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="17" cy="15" r="6"/>
+                            <path d="M6 39v-3a9 9 0 0 1 9-9h4a9 9 0 0 1 9 9v3"/>
+                            <circle cx="35" cy="13" r="5"/>
+                            <path d="M28 22a8 8 0 0 1 6-2.5h1a8 8 0 0 1 8 8v2.5"/>
+                        </svg>
+                    </div>
+                    <h3>Nómina y Seguridad Social</h3>
+                    <p>Liquidación de nómina, prestaciones y aportes al sistema de seguridad social.</p>
+                </div>
+
+                <div class="service-card" data-reveal data-tilt style="--i:0">
+                    <div class="card-glow" aria-hidden="true"></div>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 48 48" fill="none" stroke="url(#brandGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 34l10-10 7 7 15-15"/>
+                            <path d="M30 16h8v8"/>
+                        </svg>
+                    </div>
+                    <h3>Asesoría Financiera</h3>
+                    <p>Planeación financiera y acompañamiento estratégico para decisiones de inversión y crecimiento.</p>
+                </div>
+
+                <div class="service-card" data-reveal data-tilt style="--i:1">
+                    <div class="card-glow" aria-hidden="true"></div>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 48 48" fill="none" stroke="url(#brandGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 40h36"/>
+                            <rect x="10" y="26" width="7" height="14" rx="1.5"/>
+                            <rect x="21" y="18" width="7" height="22" rx="1.5"/>
+                            <rect x="32" y="10" width="7" height="30" rx="1.5"/>
+                        </svg>
+                    </div>
+                    <h3>Análisis e Indicadores</h3>
+                    <p>Reportes e indicadores financieros claros para entender la salud real de tu negocio.</p>
+                </div>
+
+                <div class="service-card" data-reveal data-tilt style="--i:2">
+                    <div class="card-glow" aria-hidden="true"></div>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 48 48" fill="none" stroke="url(#brandGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="7" y="5" width="22" height="30" rx="3"/>
+                            <path d="M13 13h10M13 19h10M13 25h6"/>
+                            <circle cx="32" cy="30" r="7"/>
+                            <path d="M37.5 35.5L44 42" stroke-width="2.3"/>
+                        </svg>
+                    </div>
+                    <h3>Auditoría y Revisoría</h3>
+                    <p>Revisión independiente de tus cuentas para blindar a tu empresa ante riesgos y errores.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== EQUIPO ===================== -->
+        <section class="team" id="equipo">
+            <div class="section-head" data-reveal>
+                <span class="section-tag">Nuestro equipo</span>
+                <h2 class="section-title">Las personas detrás de <span class="text-gradient">tus números.</span></h2>
+                <p class="section-subtitle">Dos perfiles, un mismo objetivo: que tu empresa tome decisiones con información clara y confiable.</p>
+            </div>
+
+            <div class="team-grid">
+                <!-- Perfil 1: Contador -->
+                <a href="https://wa.me/573167578219?text=Hola%20SoluInc%2C%20me%20gustar%C3%ADa%20contactar%20con%20el%20%C3%A1rea%20de%20Contabilidad." target="_blank" rel="noopener" class="profile-card" data-reveal data-tilt style="--i:0">
+                    <div class="profile-photo">
+                        <div class="profile-photo-inner">
+                            <!-- Reemplaza este bloque por <img class="profile-photo-img" src="ruta-a-la-foto.jpg" alt="Nombre completo"> cuando tengas la foto real -->
+                            <svg class="profile-placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="8" r="4"/>
+                                <path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
+                            </svg>
+                        </div>
+                        <span class="profile-badge" title="Perfil verificado">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                        </span>
+                    </div>
+                    <h3 class="profile-name">Nombre del Contador</h3>
+                    <span class="profile-role">Contador Público</span>
+                    <p class="profile-degree">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l10 5-10 5L2 8l10-5z"/><path d="M6 10.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5"/></svg>
+                        Contaduría Pública — Universidad
+                    </p>
+                    <p class="profile-bio">A cargo de mantener tu contabilidad al día, tus estados financieros claros y tus obligaciones tributarias cumplidas.</p>
+                    <span class="profile-contact">Contactar
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    </span>
+                </a>
+
+                <!-- Perfil 2: Financiero -->
+                <a href="https://wa.me/573167578219?text=Hola%20SoluInc%2C%20me%20gustar%C3%ADa%20contactar%20con%20el%20%C3%A1rea%20Financiera." target="_blank" rel="noopener" class="profile-card" data-reveal data-tilt style="--i:1">
+                    <div class="profile-photo">
+                        <div class="profile-photo-inner">
+                            <!-- Reemplaza este bloque por <img class="profile-photo-img" src="ruta-a-la-foto.jpg" alt="Nombre completo"> cuando tengas la foto real -->
+                            <svg class="profile-placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="8" r="4"/>
+                                <path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
+                            </svg>
+                        </div>
+                        <span class="profile-badge" title="Perfil verificado">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                        </span>
+                    </div>
+                    <h3 class="profile-name">Nombre del Financiero</h3>
+                    <span class="profile-role">Asesor Financiero</span>
+                    <p class="profile-degree">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l10 5-10 5L2 8l10-5z"/><path d="M6 10.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5"/></svg>
+                        Finanzas y Negocios — Universidad
+                    </p>
+                    <p class="profile-bio">Encargado de la planeación financiera, el análisis de indicadores y la asesoría estratégica de tu empresa.</p>
+                    <span class="profile-contact">Contactar
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    </span>
+                </a>
+            </div>
+            <p class="team-note">¿Ya conoces a tu contador o asesor? Escríbele directo dando clic en su perfil.</p>
+        </section>
+
+        <!-- ===================== PROCESO ===================== -->
+        <section class="process" id="proceso">
+            <div class="section-head" data-reveal>
+                <span class="section-tag">Cómo trabajamos</span>
+                <h2 class="section-title">Un proceso <span class="text-gradient">claro, de principio a fin.</span></h2>
+            </div>
+
+            <div class="process-grid">
+                <div class="process-step" data-reveal style="--i:0">
+                    <span class="process-number">1</span>
+                    <h3>Diagnóstico inicial</h3>
+                    <p>Revisamos el estado actual de tu contabilidad y las necesidades financieras de tu empresa.</p>
+                </div>
+                <div class="process-step" data-reveal style="--i:1">
+                    <span class="process-number">2</span>
+                    <h3>Organización contable</h3>
+                    <p>Ponemos al día tus libros, soportes y procesos internos.</p>
+                </div>
+                <div class="process-step" data-reveal style="--i:2">
+                    <span class="process-number">3</span>
+                    <h3>Cumplimiento y reportes</h3>
+                    <p>Declaraciones, estados financieros e indicadores claros, siempre a tiempo.</p>
+                </div>
+                <div class="process-step" data-reveal style="--i:3">
+                    <span class="process-number">4</span>
+                    <h3>Acompañamiento continuo</h3>
+                    <p>Asesoría permanente para que tomes decisiones financieras informadas.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== CTA ===================== -->
+        <section class="cta-band" id="contacto" data-reveal>
+            <div class="cta-inner">
+                <h2>¿Listo para poner tus finanzas en orden?</h2>
+                <p>Cuéntanos el estado de tu empresa y te ayudamos a encontrar la solución contable y financiera adecuada.</p>
+                <a href="https://wa.me/573167578219?text=Hola%20SoluInc%2C%20quiero%20una%20asesor%C3%ADa%20contable%20y%20financiera%20para%20mi%20empresa." target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+                    <span>Escríbenos por WhatsApp</span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <img src="../logo blanco (1).png" alt="SoluInc" class="footer-logo">
+        <div class="footer-links">
+            <a href="#servicios">Servicios</a>
+            <a href="#equipo">Equipo</a>
+            <a href="#proceso">Proceso</a>
+            <a href="../index.html">Volver al Home</a>
+        </div>
+        <div class="footer-content">
+            <p>&copy; <span id="year"></span> Soluinc. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="interactions.js"></script>
+</body>
+</html>
