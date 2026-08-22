@@ -1,0 +1,85 @@
+.cta-band {
+    position: relative;
+    margin: 0 6% 6rem;
+    max-width: 1240px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 4.2rem 6%;
+    border-radius: 32px;
+    text-align: center;
+    background: var(--grad-brand);
+    overflow: hidden;
+}
+
+.cta-band::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(circle at 50% 50%, #000, transparent 75%);
+    -webkit-mask-image: radial-gradient(circle at 50% 50%, #000, transparent 75%);
+}
+
+.cta-inner { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
+
+.cta-band h2 {
+    font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+    font-weight: 800;
+    margin-bottom: 0.9rem;
+    color: #fff;
+}
+
+.cta-band p {
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 300;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+}
+
+.cta-band .btn-primary {
+    background: #fff;
+    color: var(--blue-deep);
+    box-shadow: 0 14px 34px -10px rgba(0, 0, 0, 0.4);
+}
+
+.cta-band .btn-primary:hover { box-shadow: 0 18px 40px -8px rgba(0, 0, 0, 0.5); }
+
+.main-footer {
+    padding: 3.2rem 6% 2.4rem;
+    text-align: center;
+    background: var(--navy-950);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.footer-logo { height: 34px; width: auto; margin: 0 auto 1.4rem; opacity: 0.9; }
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1.4rem;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: rgba(238, 247, 252, 0.7);
+    transition: color 0.3s ease;
+    text-decoration: none;
+}
+
+.footer-links a:hover { color: var(--blue-sky); }
+
+.footer-content p {
+    font-size: 0.78rem;
+    color: rgba(238, 247, 252, 0.4);
+    font-weight: 300;
+}
+
+@media (max-width: 640px) {
+    .cta-band { padding: 3.2rem 7%; border-radius: 24px; }
+}
